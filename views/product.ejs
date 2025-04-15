@@ -1,0 +1,15 @@
+<h1><%= product.name %></h1>
+<div><%= product.description %></div>
+<button onclick="deleteProduct('<%= product.name %>')">Delete</button>
+
+<script>
+  function deleteProduct(name) {
+    fetch(`/products/${name}`, {
+      method: "DELETE",
+    })
+    .then(res => res.json())
+    .then(data => {
+      if (data.success) window.location.href = "/products";
+    });
+  }
+</script>
